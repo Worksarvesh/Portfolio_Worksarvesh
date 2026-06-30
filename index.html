@@ -159,6 +159,7 @@ section{padding:120px 2rem;max-width:1200px;margin:0 auto}
 .project-link.primary:hover{background:var(--accent-primary);color:#fff}
 .project-link.secondary{color:var(--text-secondary);border:1px solid var(--border-subtle)}
 .project-link.secondary:hover{color:var(--text-primary);border-color:var(--border-active)}
+.project-link.disabled{opacity:0.45;pointer-events:none;cursor:not-allowed}
 .browser-mockup{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-subtle);transition:transform 0.3s var(--ease-smooth)}
 .browser-bar{background:var(--bg-elevated);padding:0.6rem 0.8rem;display:flex;align-items:center;gap:0.5rem}
 .browser-dots{display:flex;gap:5px}
@@ -169,6 +170,7 @@ section{padding:120px 2rem;max-width:1200px;margin:0 auto}
 .browser-url{flex:1;background:var(--bg-surface);border-radius:4px;padding:0.2rem 0.6rem;font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)}
 .browser-content{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .browser-content-name{font-size:1.2rem;font-weight:700;color:rgba(255,255,255,0.9);text-align:center;font-family:var(--font-mono);z-index:1;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
+.coming-soon-badge{position:absolute;top:0.6rem;right:0.6rem;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.4);color:#f59e0b;font-family:var(--font-mono);font-size:0.62rem;padding:0.2rem 0.55rem;border-radius:100px;z-index:2}
 @media(max-width:768px){.project-card{grid-template-columns:1fr}.browser-mockup{display:none}}
 
 /* CONTACT */
@@ -240,12 +242,12 @@ footer{border-top:1px solid var(--border-subtle);padding:2rem;display:flex;align
     <div class="hero-content">
       <div class="hero-badge">
         <span class="pulse-dot"></span>
-        ✦ Available for Frontend Roles
+        ✦ Available for Frontend / Data / AI Roles
       </div>
       <div class="hero-greeting">Hi, I'm</div>
       <h1 class="hero-name gradient-text">Sarvesh Sharma</h1>
       <div class="hero-role"><span id="typing-text"></span><span class="cursor-blink">_</span></div>
-      <p class="hero-desc">Final-year B.Tech IT student from Nagpur. I build fast, beautiful, and responsive web interfaces using React and modern CSS.</p>
+      <p class="hero-desc">Final-year B.Tech IT student from Nagpur. I build fast, beautiful interfaces with React, and turn raw data into insight with Python, SQL, and AI-powered tools.</p>
       <div class="hero-ctas">
         <a href="#projects" class="btn-primary">View Projects <span>→</span></a>
         <a href="Sarvesh_Sharma_Frontend_Resume_Final.pdf" class="btn-ghost" download="Sarvesh_Sharma_Resume.pdf">Download CV <span>↓</span></a>
@@ -272,20 +274,19 @@ footer{border-top:1px solid var(--border-subtle);padding:2rem;display:flex;align
           <div>}</div>
         </div>
         <div class="code-card">
-          <div><span class="code-comment">// Sarvesh Sharma</span></div>
-          <div><span class="code-kw">import</span> React <span class="code-kw">from</span> <span class="code-str">'react'</span></div>
-          <div><span class="code-kw">import</span> passion <span class="code-kw">from</span> <span class="code-str">'./heart'</span></div>
+          <div><span class="code-comment"># analyze_data.py</span></div>
+          <div><span class="code-kw">import</span> pandas <span class="code-kw">as</span> pd</div>
+          <div><span class="code-kw">import</span> sklearn</div>
           <div>&nbsp;</div>
-          <div><span class="code-fn">export default</span> <span class="code-kw">function</span> <span class="code-fn">Dev</span>() {</div>
-          <div>&nbsp;&nbsp;<span class="code-kw">return</span> &lt;<span class="code-fn">Portfolio</span> /&gt;</div>
-          <div>}</div>
+          <div>df = pd.<span class="code-fn">read_sql</span>(<span class="code-str">query</span>)</div>
+          <div><span class="code-fn">model</span>.fit(df, <span class="code-str">insights</span>)</div>
         </div>
         <div class="code-card">
-          <div><span class="code-comment">/* skills.css */</span></div>
-          <div><span class="code-fn">.frontend-dev</span> {</div>
-          <div>&nbsp;&nbsp;creativity: <span class="code-str">high</span>;</div>
-          <div>&nbsp;&nbsp;attention: <span class="code-str">detail</span>;</div>
-          <div>&nbsp;&nbsp;passion: <span class="code-str">infinite</span>;</div>
+          <div><span class="code-comment">/* hybrid.css */</span></div>
+          <div><span class="code-fn">.sarvesh</span> {</div>
+          <div>&nbsp;&nbsp;frontend: <span class="code-str">true</span>;</div>
+          <div>&nbsp;&nbsp;dataAnalyst: <span class="code-str">true</span>;</div>
+          <div>&nbsp;&nbsp;aiPowered: <span class="code-str">true</span>;</div>
           <div>}</div>
         </div>
       </div>
@@ -316,11 +317,11 @@ footer{border-top:1px solid var(--border-subtle);padding:2rem;display:flex;align
     </div>
     <div class="reveal-right">
       <div class="section-label">// about me</div>
-      <h2 class="section-heading">Crafting Interfaces,<br/>One Component at a Time</h2>
+      <h2 class="section-heading">Building Interfaces,<br/>Decoding Data, Shipping AI</h2>
       <div class="about-bio">
-        <p>I'm Sarvesh Sharma, a final-year B.Tech IT student from Nagpur with a genuine obsession for building things that live on screens. My journey into frontend development started with curiosity and evolved into a craft I take seriously every single day.</p>
-        <p>I specialize in building responsive, performant user interfaces using React and modern CSS. I care deeply about the details — spacing, transitions, accessibility, and the way an interface feels in motion. Every project I touch is an opportunity to push my craft further.</p>
-        <p>Right now I'm actively seeking Junior Frontend Developer opportunities where I can contribute meaningfully, grow fast, and collaborate with teams who care about quality software.</p>
+        <p>I'm Sarvesh Sharma, a final-year B.Tech IT student from Nagpur with a genuine obsession for building things that live on screens and finding stories hidden inside data. My journey started with curiosity and evolved into a hybrid skill set spanning frontend engineering, data analysis, and AI-powered applications.</p>
+        <p>On the frontend side, I build responsive, performant interfaces using React and modern CSS, caring deeply about spacing, transitions, and how an interface feels in motion. On the data side, I work with Python, SQL, and Power BI to turn raw numbers into business insight — and I layer in machine learning and AI tooling (Gemini Vision, ML models, OCR pipelines) to make applications smarter.</p>
+        <p>Right now I'm actively seeking Frontend Developer, Data Analyst, or hybrid AI/full-stack roles where I can contribute meaningfully, grow fast, and collaborate with teams who care about quality software and good data.</p>
       </div>
       <div class="stat-pills">
         <div class="stat-pill">
@@ -359,7 +360,15 @@ footer{border-top:1px solid var(--border-subtle);padding:2rem;display:flex;align
     <div class="skill-group-label">Frontend</div>
     <div class="skill-chips" id="frontend-chips"></div>
   </div>
-  <div class="skill-group reveal" style="transition-delay:0.15s">
+  <div class="skill-group reveal" style="transition-delay:0.1s">
+    <div class="skill-group-label">Data Analysis</div>
+    <div class="skill-chips" id="data-chips"></div>
+  </div>
+  <div class="skill-group reveal" style="transition-delay:0.2s">
+    <div class="skill-group-label">AI / ML</div>
+    <div class="skill-chips" id="ai-chips"></div>
+  </div>
+  <div class="skill-group reveal" style="transition-delay:0.3s">
     <div class="skill-group-label">Workflow</div>
     <div class="skill-chips" id="workflow-chips"></div>
   </div>
@@ -381,7 +390,7 @@ footer{border-top:1px solid var(--border-subtle);padding:2rem;display:flex;align
 <div class="contact-inner">
   <div class="section-label reveal" style="text-align:center">// contact</div>
   <h2 class="section-heading reveal" style="text-align:center">Let's Work Together</h2>
-  <p class="reveal" style="color:var(--text-secondary);transition-delay:0.1s">I'm currently open to Junior Frontend roles in Nagpur or remote. Let's talk.</p>
+  <p class="reveal" style="color:var(--text-secondary);transition-delay:0.1s">I'm currently open to Frontend, Data Analyst, or hybrid AI roles in Nagpur or remote. Let's talk.</p>
   <div class="email-card reveal" id="email-card" style="transition-delay:0.2s">
     <div class="email-address">worksarvesh05@gmail.com</div>
     <div class="email-hint">Click to copy · or <a href="mailto:worksarvesh05@gmail.com" style="color:var(--accent-secondary)">open mail client</a></div>
@@ -435,6 +444,18 @@ const frontendSkills=[
   {name:"CSS Animations",icon:"✨",level:"high"},{name:"Responsive Design",icon:"📱",level:"high"},
   {name:"React Hooks",icon:"🪝",level:"mid"},{name:"REST APIs",icon:"🔌",level:"mid"}
 ];
+const dataSkills=[
+  {name:"Python",icon:"🐍",level:"high"},{name:"SQL",icon:"🗄️",level:"high"},
+  {name:"Pandas",icon:"🐼",level:"high"},{name:"NumPy",icon:"🔢",level:"mid"},
+  {name:"Power BI",icon:"📊",level:"mid"},{name:"Data Visualization",icon:"📈",level:"high"},
+  {name:"Excel",icon:"📑",level:"high"},{name:"Streamlit",icon:"💠",level:"mid"}
+];
+const aiSkills=[
+  {name:"Machine Learning",icon:"🤖",level:"mid"},{name:"Scikit-learn",icon:"🧠",level:"mid"},
+  {name:"OpenCV",icon:"👁️",level:"mid"},{name:"MediaPipe",icon:"✋",level:"mid"},
+  {name:"Gemini Vision API",icon:"✨",level:"mid"},{name:"OCR Pipelines",icon:"🔎",level:"mid"},
+  {name:"Recommendation Systems",icon:"🎯",level:"mid"}
+];
 const workflowSkills=[
   {name:"Git",icon:"🌿",level:"high"},{name:"GitHub",icon:"🐙",level:"high"},
   {name:"GitHub Pages",icon:"🚀",level:"high"},{name:"VS Code",icon:"💻",level:"high"},
@@ -442,10 +463,10 @@ const workflowSkills=[
   {name:"Vite",icon:"⚡",level:"mid"}
 ];
 const projects=[
-  {id:"01",name:"DevPulse",tagline:"Developer Productivity Analytics Dashboard",tags:["React","JavaScript","CSS3","Charts"],description:"A modern analytics dashboard for developers to track productivity, coding activity, project progress, and performance metrics. Features responsive data visualizations, KPI tracking cards, activity timelines, and reusable components.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/devpulse",gradient:"linear-gradient(135deg,#22c55e33,#06b6d433)",accentColor:"#22c55e"},
-  {id:"02",name:"CommerceIntel",tagline:"E-Commerce Sales Analytics Platform",tags:["Python","SQL","Power BI","Flask"],description:"A business intelligence platform transforming raw sales and inventory data into actionable insights. Analyzes revenue trends, customer purchasing behavior, inventory movement, and operational KPIs through structured SQL reporting.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/CommerceIntel",gradient:"linear-gradient(135deg,#06b6d433,#f59e0b33)",accentColor:"#06b6d4"},
-  {id:"03",name:"AI Vehicle Diagnostics",tagline:"Computer Vision DDR Generator",tags:["Python","OpenCV","OCR","Computer Vision"],description:"A computer vision-based inspection system automating vehicle fault analysis and report generation. Uses OCR pipelines to extract diagnostic information from vehicle images and convert it into structured DDR reports.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/ai-vehicle-diagnostics-ddr-generator-with-vision",gradient:"linear-gradient(135deg,#7c3aed33,#06b6d433)",accentColor:"#7c3aed"},
-  {id:"04",name:"Gesture Control",tagline:"Gesture-Based YouTube Media Controller",tags:["Python","MediaPipe","OpenCV","Flask"],description:"A real-time computer vision app enabling hands-free media interaction via gesture recognition. Tracks hand landmarks through MediaPipe to control YouTube playback: play, pause, volume, and navigation.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/Youtube_Gesture_Control",gradient:"linear-gradient(135deg,#ef444433,#f9731633)",accentColor:"#ef4444"}
+  {id:"01",name:"DevPulse",tagline:"Developer Productivity Analytics Dashboard",tags:["React","JavaScript","CSS3","Charts"],description:"A modern analytics dashboard for developers to track productivity, coding activity, project progress, and performance metrics. Features responsive data visualizations, KPI tracking cards, activity timelines, and reusable components.",liveUrl:"#",githubUrl:"#",comingSoon:true,gradient:"linear-gradient(135deg,#22c55e33,#06b6d433)",accentColor:"#22c55e"},
+  {id:"02",name:"CommerceIntel",tagline:"E-Commerce Sales Analytics Platform",tags:["Python","SQL","Power BI","Flask"],description:"A business intelligence platform transforming raw sales and inventory data into actionable insights. Analyzes revenue trends, customer purchasing behavior, inventory movement, and operational KPIs through structured SQL reporting.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/CommerceIntel.git",gradient:"linear-gradient(135deg,#06b6d433,#f59e0b33)",accentColor:"#06b6d4"},
+  {id:"03",name:"AI Vehicle Diagnostics",tagline:"Computer Vision DDR Generator",tags:["Python","OpenCV","OCR","Computer Vision"],description:"A computer vision-based inspection system automating vehicle fault analysis and report generation. Uses OCR pipelines to extract diagnostic information from vehicle images and convert it into structured DDR reports.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/ai-vehicle-diagnostics-ddr-generator-with-vision.git",gradient:"linear-gradient(135deg,#7c3aed33,#06b6d433)",accentColor:"#7c3aed"},
+  {id:"04",name:"Gesture Control",tagline:"Gesture-Based YouTube Media Controller",tags:["Python","MediaPipe","OpenCV","Flask"],description:"A real-time computer vision app enabling hands-free media interaction via gesture recognition. Tracks hand landmarks through MediaPipe to control YouTube playback: play, pause, volume, and navigation.",liveUrl:"#",githubUrl:"https://github.com/Worksarvesh/Youtube_Gesture_Control.git",gradient:"linear-gradient(135deg,#ef444433,#f9731633)",accentColor:"#ef4444"}
 ];
 
 function renderSkillChip(s,i){
@@ -455,7 +476,9 @@ function renderSkillChip(s,i){
   chip.innerHTML=`<span class="skill-chip-icon">${s.icon}</span><span>${s.name}</span><span class="skill-dot ${s.level}"></span>`;
   return chip;
 }
-document.querySelectorAll('#frontend-chips')[0] && frontendSkills.forEach((s,i)=>document.getElementById('frontend-chips').appendChild(renderSkillChip(s,i)));
+frontendSkills.forEach((s,i)=>document.getElementById('frontend-chips').appendChild(renderSkillChip(s,i)));
+dataSkills.forEach((s,i)=>document.getElementById('data-chips').appendChild(renderSkillChip(s,i)));
+aiSkills.forEach((s,i)=>document.getElementById('ai-chips').appendChild(renderSkillChip(s,i)));
 workflowSkills.forEach((s,i)=>document.getElementById('workflow-chips').appendChild(renderSkillChip(s,i)));
 
 function renderProject(p,i){
@@ -470,11 +493,12 @@ function renderProject(p,i){
       <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
       <p class="project-desc">${p.description}</p>
       <div class="project-links">
-        <a href="${p.liveUrl}" class="project-link primary">Live Demo ↗</a>
-        <a href="${p.githubUrl}" target="_blank" class="project-link secondary">GitHub →</a>
+        <a href="${p.liveUrl}" class="project-link primary ${p.comingSoon?'disabled':''}">${p.comingSoon?'Live Demo (Soon)':'Live Demo ↗'}</a>
+        <a href="${p.githubUrl}" target="_blank" class="project-link secondary ${p.comingSoon?'disabled':''}">${p.comingSoon?'Repo (Soon)':'GitHub →'}</a>
       </div>
     </div>
-    <div class="browser-mockup">
+    <div class="browser-mockup" style="position:relative">
+      ${p.comingSoon?'<div class="coming-soon-badge">Not pushed yet</div>':''}
       <div class="browser-bar">
         <div class="browser-dots"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
         <div class="browser-url">worksarvesh.dev/${p.name.toLowerCase().replace(/\s+/g,'-')}</div>
@@ -500,7 +524,7 @@ const list=document.getElementById('projects-list');
 if(list) projects.forEach((p,i)=>list.appendChild(renderProject(p,i)));
 
 // Typing animation
-const roles=["Frontend Developer","React Developer","UI Enthusiast","Open to Work"];
+const roles=["Frontend Developer","Data Analyst","AI-Powered Hybrid Developer","React Developer","Open to Work"];
 let ri=0,ci=0,deleting=false;
 function type(){
   const el=document.getElementById('typing-text');
