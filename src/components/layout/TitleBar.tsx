@@ -90,6 +90,7 @@ export default function TitleBar() {
   return (
     <div className="h-9 shrink-0 bg-[var(--color-bg-titlebar)] border-b border-[var(--color-border-subtle)] flex items-center justify-between px-3 select-none relative">
       <div className="flex items-center gap-3 text-[var(--color-text-dim)]">
+        <img src="/visual-studio-code.svg" alt="VS Code logo" className="h-5 w-5 rounded-sm" />
         <VscMenu className="text-base" />
         {menuSections.map((section) => (
           <div key={section.label} className="relative hidden sm:block">
