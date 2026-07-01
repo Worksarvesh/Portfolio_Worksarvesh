@@ -61,7 +61,7 @@ export function EditorProvider({ children }: { children: ReactNode }) {
         setActiveTab(id);
 
         const link = document.createElement("a");
-        link.href = "/resume.pdf";
+        link.href = `${import.meta.env.BASE_URL}resume.pdf`;
         link.download = "Sarvesh-Sharma-Resume.pdf";
         link.rel = "noopener noreferrer";
         document.body.appendChild(link);
