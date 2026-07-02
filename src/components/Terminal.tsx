@@ -3,26 +3,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { VscChromeClose, VscTerminal } from "react-icons/vsc";
 import { useEditor } from "../context/EditorContext";
 
-const PROFILE_LINKS = {
-  github: "https://github.com/Worksarvesh",
-  linkedin: "https://www.linkedin.com/in/sarvesh-sharma-432738354/",
-};
-
 type Line = { type: "input" | "output"; text: string };
 
 const ASCII = `
-   _____ _    _ ____  _    _ _____ ____  _    _
-  / ____| |  | |  _ \\| |  | |_   _/ __ \\| |  | |
- | |  __| |  | | |_) | |  | | | || |  | | |__| |
- | | |_ | |  | |  _ <| |  | | | || |  | |  __  |
- | |__| | |__| | |_) | |__| |_| || |__| | |  | |
-  \\_____|\\____/|____/ \\____/_____\\____/|_|  |_|
+   ____  ___   ____  _    _________ __  __
+  / __ \\/   | / __ \\| |  / / ____/ // / / /
+ / /_/ / /| |/ /_/ / | / / __/ / // /_/ /
+/ _, _/ ___ / _, _/| |/ / /___/__  __/
+/_/ |_/_/  |_/_/ |_| |___/_____/  /_/
 `;
 
 export default function Terminal() {
-  const { terminalOpen, setTerminalOpen, openFile, showToast } = useEditor();
+  const { terminalOpen, setTerminalOpen, openFile } = useEditor();
   const [lines, setLines] = useState<Line[]>([
-    { type: "output", text: "Welcome to sarvesh@portfolio:~ — type 'help' to get started." },
+    { type: "output", text: "Welcome to sarvesh@portfolio — type 'help' to get started." },
   ]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
@@ -46,7 +40,9 @@ export default function Terminal() {
       case "":
         break;
       case "help":
-        push("Available commands: help, about, projects, skills, resume, github, linkedin, contact, education, achievements, whoami, date, neofetch, clear");
+        push(
+          "Commands: help  about  projects  skills  resume  github  linkedin  contact  education  whoami  date  neofetch  clear"
+        );
         break;
       case "about":
         push("Sarvesh Sharma — Final-year B.Tech IT student at RCOEM, Nagpur. Frontend Developer & Data Analyst.");
@@ -64,42 +60,39 @@ export default function Terminal() {
         push("Opening experience.ts …");
         openFile("experience");
         break;
-      case "achievements":
-        push("Opening achievements.md …");
-        openFile("achievements");
-        break;
       case "resume":
-        push("Downloading resume.pdf …");
+        push("Opening resume.pdf in a new tab…");
         openFile("resume");
-        showToast("Resume download started", "success");
         break;
       case "github":
-        push("Opening GitHub profile in a new tab…");
-        window.open(PROFILE_LINKS.github, "_blank", "noopener,noreferrer");
+        push("Opening github.com/Worksarvesh …");
+        window.open("https://github.com/Worksarvesh", "_blank");
         break;
       case "linkedin":
-        push("Opening LinkedIn profile in a new tab…");
-        window.open(PROFILE_LINKS.linkedin, "_blank", "noopener,noreferrer");
+        push("Opening LinkedIn profile …");
+        window.open("https://www.linkedin.com/in/sarvesh-sharma-432738354/", "_blank");
         break;
       case "contact":
         push("Opening contact.css …");
         openFile("contact");
         break;
       case "whoami":
-        push("sarvesh-sharma — frontend developer / data analyst / ai builder");
+        push("sarvesh-sharma  —  frontend developer / data analyst / ai builder");
         break;
       case "date":
         push(new Date().toString());
         break;
       case "neofetch":
         push(ASCII);
-        push("OS: VS Code Portfolio Edition  |  Shell: react-bash  |  Stack: React + TS + Tailwind + Framer Motion");
+        push(
+          "OS: VS Code Portfolio Edition  |  Shell: react-bash  |  Stack: React + TS + Tailwind + Framer Motion"
+        );
         break;
       case "clear":
         setLines([]);
         return;
       default:
-        push(`command not found: ${cmd} — type 'help' for a list of commands`);
+        push(`command not found: ${cmd} — type 'help' for available commands`);
     }
   };
 
@@ -115,7 +108,7 @@ export default function Terminal() {
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      if (history.length === 0) return;
+      if (!history.length) return;
       const next = historyIdx === -1 ? history.length - 1 : Math.max(0, historyIdx - 1);
       setHistoryIdx(next);
       setInput(history[next]);
@@ -123,13 +116,8 @@ export default function Terminal() {
       e.preventDefault();
       if (historyIdx === -1) return;
       const next = historyIdx + 1;
-      if (next >= history.length) {
-        setHistoryIdx(-1);
-        setInput("");
-      } else {
-        setHistoryIdx(next);
-        setInput(history[next]);
-      }
+      if (next >= history.length) { setHistoryIdx(-1); setInput(""); }
+      else { setHistoryIdx(next); setInput(history[next]); }
     }
   };
 
@@ -144,7 +132,9 @@ export default function Terminal() {
           className="shrink-0 bg-[var(--color-bg-panel)] border-t border-[var(--color-border-subtle)] flex flex-col overflow-hidden"
         >
           <div className="flex items-center justify-between px-3 py-1.5 border-b border-[var(--color-border-subtle)] text-xs text-[var(--color-text-dim)]">
-            <span className="flex items-center gap-2"><VscTerminal /> TERMINAL — bash</span>
+            <span className="flex items-center gap-2">
+              <VscTerminal /> TERMINAL — bash
+            </span>
             <button onClick={() => setTerminalOpen(false)} aria-label="Close terminal">
               <VscChromeClose className="hover:text-[var(--color-accent-red)]" />
             </button>
@@ -154,22 +144,29 @@ export default function Terminal() {
             onClick={() => inputRef.current?.focus()}
           >
             {lines.map((l, i) => (
-              <pre key={i} className={`whitespace-pre-wrap break-words ${l.type === "input" ? "text-[var(--color-accent-green)]" : "text-[var(--color-text-dim)]"}`}>
+              <pre
+                key={i}
+                className={`whitespace-pre-wrap break-words ${
+                  l.type === "input"
+                    ? "text-[var(--color-accent-green)]"
+                    : "text-[var(--color-text-dim)]"
+                }`}
+              >
                 {l.type === "input" ? `sarvesh@portfolio:~$ ${l.text}` : l.text}
               </pre>
             ))}
             <form onSubmit={onSubmit} className="flex items-center gap-1 text-[var(--color-accent-green)]">
-              <span>sarvesh@portfolio:~$</span>
+              <span className="shrink-0">sarvesh@portfolio:~$</span>
               <input
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
-                className="bg-transparent outline-none flex-1 text-[var(--color-text-primary)]"
+                className="bg-transparent outline-none flex-1 text-[var(--color-text-primary)] min-w-0"
                 spellCheck={false}
                 autoComplete="off"
               />
-              <span className="w-2 h-4 bg-[var(--color-accent-green)] caret-blink inline-block" />
+              <span className="w-2 h-4 bg-[var(--color-accent-green)] caret-blink inline-block shrink-0" />
             </form>
             <div ref={endRef} />
           </div>

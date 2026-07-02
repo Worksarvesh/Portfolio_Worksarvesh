@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { VscHome, VscFolderOpened, VscCloudDownload, VscMail, VscGithub, VscColorMode, VscSearch, VscTerminal } from "react-icons/vsc";
+import {
+  VscHome, VscFolderOpened, VscCloudDownload, VscMail,
+  VscGithub, VscColorMode, VscSearch, VscTerminal,
+} from "react-icons/vsc";
 import { useEditor } from "../context/EditorContext";
-
-const PROFILE_LINKS = {
-  github: "https://github.com/Worksarvesh",
-  linkedin: "https://www.linkedin.com/in/sarvesh-sharma-432738354/",
-};
 
 interface Command {
   id: string;
@@ -16,58 +14,65 @@ interface Command {
 }
 
 export default function CommandPalette() {
-  const { commandPaletteOpen, setCommandPaletteOpen, openFile, setTerminalOpen, terminalOpen } = useEditor();
+  const { commandPaletteOpen, setCommandPaletteOpen, openFile, setTerminalOpen, terminalOpen } =
+    useEditor();
   const [query, setQuery] = useState("");
   const [highlight, setHighlight] = useState(0);
 
   const commands: Command[] = useMemo(
     () => [
-      { id: "home", label: "Go Home", icon: <VscHome />, action: () => openFile("home") },
-      { id: "projects", label: "Open Projects", icon: <VscFolderOpened />, action: () => openFile("projects") },
-      { id: "resume", label: "Download Resume", icon: <VscCloudDownload />, action: () => openFile("resume") },
-      { id: "contact", label: "Contact", icon: <VscMail />, action: () => openFile("contact") },
-      { id: "github", label: "Open GitHub", icon: <VscGithub />, action: () => window.open(PROFILE_LINKS.github, "_blank", "noopener,noreferrer") },
-      { id: "linkedin", label: "Open LinkedIn", icon: <VscGithub />, action: () => window.open(PROFILE_LINKS.linkedin, "_blank", "noopener,noreferrer") },
-      { id: "theme", label: "Theme Toggle (Dark Mode locked in — it's VS Code)", icon: <VscColorMode />, action: () => setCommandPaletteOpen(false) },
-      { id: "search-project", label: "Search Project", icon: <VscSearch />, action: () => openFile("projects") },
-      { id: "terminal", label: "Toggle Terminal", icon: <VscTerminal />, action: () => setTerminalOpen(!terminalOpen) },
-      { id: "skills", label: "Open Skills", icon: <VscFolderOpened />, action: () => openFile("skills") },
-      { id: "about", label: "Open About", icon: <VscFolderOpened />, action: () => openFile("about") },
-      { id: "readme", label: "Open README", icon: <VscFolderOpened />, action: () => openFile("readme") },
+      { id: "home",         label: "Go Home",                               icon: <VscHome />,          action: () => openFile("home") },
+      { id: "projects",     label: "Open Projects",                         icon: <VscFolderOpened />,   action: () => openFile("projects") },
+      { id: "resume",       label: "Download Resume",                       icon: <VscCloudDownload />,  action: () => openFile("resume") },
+      { id: "contact",      label: "Contact",                               icon: <VscMail />,           action: () => openFile("contact") },
+      {
+        id: "github",
+        label: "Open GitHub — github.com/Worksarvesh",
+        icon: <VscGithub />,
+        action: () => window.open("https://github.com/Worksarvesh", "_blank"),
+      },
+      {
+        id: "linkedin",
+        label: "Open LinkedIn — sarvesh-sharma-432738354",
+        icon: <VscGithub />,
+        action: () => window.open("https://www.linkedin.com/in/sarvesh-sharma-432738354/", "_blank"),
+      },
+      {
+        id: "theme",
+        label: "Toggle Theme (Dark mode — it's VS Code, always dark)",
+        icon: <VscColorMode />,
+        action: () => {},
+      },
+      { id: "search-project", label: "Search Project",  icon: <VscSearch />,       action: () => openFile("projects") },
+      { id: "terminal",       label: "Toggle Terminal",  icon: <VscTerminal />,     action: () => setTerminalOpen(!terminalOpen) },
+      { id: "skills",         label: "Open Skills",      icon: <VscFolderOpened />, action: () => openFile("skills") },
+      { id: "about",          label: "Open About",       icon: <VscFolderOpened />, action: () => openFile("about") },
+      { id: "readme",         label: "Open README",      icon: <VscFolderOpened />, action: () => openFile("readme") },
+      { id: "achievements",   label: "Open Achievements",icon: <VscFolderOpened />, action: () => openFile("achievements") },
+      { id: "experience",     label: "Open Experience",  icon: <VscFolderOpened />, action: () => openFile("experience") },
     ],
     [openFile, setTerminalOpen, terminalOpen]
   );
 
-  const filtered = commands.filter((c) => c.label.toLowerCase().includes(query.toLowerCase()));
+  const filtered = commands.filter((c) =>
+    c.label.toLowerCase().includes(query.toLowerCase())
+  );
+
+  useEffect(() => { setHighlight(0); }, [query]);
 
   useEffect(() => {
-    setHighlight(0);
-  }, [query]);
-
-  useEffect(() => {
-    if (!commandPaletteOpen) {
-      setQuery("");
-    }
+    if (!commandPaletteOpen) setQuery("");
   }, [commandPaletteOpen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!commandPaletteOpen) return;
-      if (e.key === "Escape") setCommandPaletteOpen(false);
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        setHighlight((h) => Math.min(h + 1, filtered.length - 1));
-      }
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        setHighlight((h) => Math.max(h - 1, 0));
-      }
+      if (e.key === "Escape") { setCommandPaletteOpen(false); return; }
+      if (e.key === "ArrowDown") { e.preventDefault(); setHighlight((h) => Math.min(h + 1, filtered.length - 1)); return; }
+      if (e.key === "ArrowUp")   { e.preventDefault(); setHighlight((h) => Math.max(h - 1, 0)); return; }
       if (e.key === "Enter") {
         const cmd = filtered[highlight];
-        if (cmd) {
-          cmd.action();
-          setCommandPaletteOpen(false);
-        }
+        if (cmd) { cmd.action(); setCommandPaletteOpen(false); }
       }
     };
     window.addEventListener("keydown", onKey);
@@ -101,22 +106,25 @@ export default function CommandPalette() {
                 placeholder="Type a command…"
                 className="bg-transparent outline-none w-full text-sm mono placeholder:text-[var(--color-text-faint)]"
               />
-              <span className="text-[10px] text-[var(--color-text-faint)] border border-[var(--color-border-subtle)] rounded px-1.5 py-0.5">Esc</span>
+              <span className="text-[10px] text-[var(--color-text-faint)] border border-[var(--color-border-subtle)] rounded px-1.5 py-0.5">
+                Esc
+              </span>
             </div>
             <div className="max-h-80 overflow-y-auto scroll-thin">
               {filtered.length === 0 && (
-                <div className="px-4 py-6 text-center text-xs text-[var(--color-text-faint)]">No matching commands</div>
+                <div className="px-4 py-6 text-center text-xs text-[var(--color-text-faint)]">
+                  No matching commands
+                </div>
               )}
               {filtered.map((cmd, i) => (
                 <button
                   key={cmd.id}
                   onMouseEnter={() => setHighlight(i)}
-                  onClick={() => {
-                    cmd.action();
-                    setCommandPaletteOpen(false);
-                  }}
+                  onClick={() => { cmd.action(); setCommandPaletteOpen(false); }}
                   className={`w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors ${
-                    highlight === i ? "bg-[var(--color-accent-blue)]/15 text-white" : "text-[var(--color-text-dim)]"
+                    highlight === i
+                      ? "bg-[var(--color-accent-blue)]/15 text-white"
+                      : "text-[var(--color-text-dim)]"
                   }`}
                 >
                   <span className="text-[var(--color-accent-blue)]">{cmd.icon}</span>
