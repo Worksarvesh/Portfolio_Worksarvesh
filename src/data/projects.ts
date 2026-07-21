@@ -12,14 +12,14 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "devpulse",
-    name: "DevPulse",
-    tagline: "Developer Productivity Analytics Dashboard",
+    id: "applybot",
+    name: "ApplyBot AI",
+    tagline: "AI-Powered Job Application Automation Platform",
     description:
-      "A modern developer analytics dashboard for tracking coding productivity, project health, KPIs, activity timelines, and engineering metrics through interactive visualizations.",
-    tech: ["React", "JavaScript", "CSS", "Charts"],
+      "Full-stack platform that researches a target company, tailors resume bullets, and drafts a personalized cold email end-to-end, then sends it via the user's own Gmail account and tracks every application on a live dashboard.",
+    tech: ["React", "TypeScript", "n8n", "Google Gemini", "Supabase"],
     status: "Currently Building",
-    github: "https://github.com/Worksarvesh/DevPulse.git",
+    github: "https://github.com/Worksarvesh/applybot-ai.git",
     accent: "var(--color-accent-blue)",
   },
   {
