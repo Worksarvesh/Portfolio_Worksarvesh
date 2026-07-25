@@ -7,6 +7,7 @@ export interface Project {
   status: "Currently Building" | "Completed" | "Maintained";
   github?: string;
   demo?: string;
+  thumbnail?: string;
   accent: string;
 }
 
@@ -20,6 +21,8 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "n8n", "Google Gemini", "Supabase"],
     status: "Currently Building",
     github: "https://github.com/Worksarvesh/applybot-ai.git",
+    demo: "https://applybot-ai.vercel.app/",
+    thumbnail: "/Portfolio_Worksarvesh/projects/applybot.png",
     accent: "var(--color-accent-blue)",
   },
   {
@@ -31,6 +34,7 @@ export const projects: Project[] = [
     tech: ["Python", "SQL", "Power BI", "Flask"],
     status: "Completed",
     github: "https://github.com/Worksarvesh/CommerceIntel.git",
+    thumbnail: "/Portfolio_Worksarvesh/projects/commerceintel.png",
     accent: "var(--color-accent-green)",
   },
   {
@@ -53,6 +57,7 @@ export const projects: Project[] = [
     tech: ["Python", "MediaPipe", "OpenCV", "Flask"],
     status: "Completed",
     github: "https://github.com/Worksarvesh/Youtube_Gesture_Control.git",
+    demo: "https://youtube-gesture-control.vercel.app/",
     accent: "var(--color-accent-yellow)",
   },
 ];

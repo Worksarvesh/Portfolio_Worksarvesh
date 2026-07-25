@@ -64,4 +64,17 @@ export const skillCategories: SkillCategory[] = [
       { name: "Vite", level: 85 },
     ],
   },
+  {
+    key: "backend_automation",
+    label: "backend & automation",
+    color: "var(--color-accent-orange)",
+    skills: [
+      { name: "Supabase", level: 75 },
+      { name: "n8n", level: 72 },
+      { name: "Google Gemini API", level: 70 },
+      { name: "OAuth 2.0", level: 68 },
+      { name: "Gmail API", level: 65 },
+      { name: "Node.js", level: 70 },
+    ],
+  },
 ];
